@@ -1,10 +1,10 @@
 # Fdb version 4
-["dvipdf"] 1716217338 "out/main.dvi" "out/main.pdf" "out/main" 1716217339 0
-  "out/main.dvi" 1716217337 88916 9944b018f4801939542a2a375cb46abe "latex"
+["dvipdf"] 1716299501 "out/main.dvi" "out/main.pdf" "out/main" 1716299502 0
+  "out/main.dvi" 1716299500 88496 20667b1f94f5e63b763f67d48d06a457 "latex"
   (generated)
   "out/main.pdf"
   (rewritten before read)
-["latex"] 1716217336 "d:/work/tex/pro-functor/main.tex" "out/main.dvi" "main" 1716217339 0
+["latex"] 1716299498 "d:/work/tex/pro-functor/main.tex" "out/main.dvi" "main" 1716299502 0
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1686552300 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1686556364 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/ptex-fonts/standard/goth6.tfm" 1686556364 1196 977af188465e721f1f65facb66282510 ""
@@ -150,10 +150,10 @@
   "c:/texlive/2023/texmf-dist/web2c/texmf.cnf" 1686549049 40967 d940221f8762fd5848760382d97d1226 ""
   "c:/texlive/2023/texmf-var/web2c/euptex/platex.fmt" 1686559074 7833106 4fa703890a9a1fce8c5fee27a88184eb ""
   "c:/texlive/2023/texmf.cnf" 1686558752 713 614551405fc44b98efbf516466e3c909 ""
-  "d:/work/tex/pro-functor/main.tex" 1716217334 18251 65662d6601e31dc360ddc103e6cf253c ""
-  "main.tex" 1716217334 18251 65662d6601e31dc360ddc103e6cf253c ""
-  "out/main.aux" 1716217337 32 2d1df76398b3c48c6419a45a7331db2d "latex"
-  "out/main.toc" 1716217337 0 d41d8cd98f00b204e9800998ecf8427e "latex"
+  "d:/work/tex/pro-functor/main.tex" 1716299497 18087 bc46f6d372ea61ecfbd3d4054a7d8277 ""
+  "main.tex" 1716299497 18087 bc46f6d372ea61ecfbd3d4054a7d8277 ""
+  "out/main.aux" 1716299500 32 2d1df76398b3c48c6419a45a7331db2d "latex"
+  "out/main.toc" 1716299500 0 d41d8cd98f00b204e9800998ecf8427e "latex"
   (generated)
   "out/main.aux"
   "out/main.dvi"

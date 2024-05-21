@@ -135,19 +135,19 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
 それぞれ上付きと下付きの同じ添え字を持つテンソルは合成することができる．
 
 \begin{example}
-  行列$F^\BB_\AA$と$G^\CC_\BB$の合成はエンドを用いて次のように計算される．
+  行列$F^\BB_\AA$と$G^\CC_\BB$の合成はコエンドを用いて次のように計算される．
   \[
-    F^\BB_\AA G^\CC_\BB = \int {F^{(b)}_\AA G^\CC_{(b)}}^{db}
+    F^\BB_\AA G^\CC_\BB = \int F^{(b)}_\AA G^\CC_{(b)}db
   \]
 \end{example}
 \begin{theorem}
   行列$E_\AA^\BB$と$F_\BB^\CC$，$G_\CC^\DD$にの合成には結合率が成り立つ．
   つまり，
   \begin{align*}
-    E_\AA^\BB (F_\BB^\CC G_\CC^\DD) &= E_\AA^\BB \left(\int {F_\BB^{(c)} G_{(c)}^\DD}^{dc}\right) \\
-    &= \int E_\AA^{(b)} \left(\int {F_{(b)}^{(c)} G_{(c)}^\DD}^{dc}\right)^{db} \\
-    &= \int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc} \\
-    &= \left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD \\
+    E_\AA^\BB (F_\BB^\CC G_\CC^\DD) &= E_\AA^\BB \left(\int F_\BB^{(c)} G_{(c)}^\DD dc\right) \\
+    &= \int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db \\
+    &= \int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc \\
+    &= \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD \\
     &= (E_\AA^\BB F_\BB^\CC) G_\CC^\DD
   \end{align*}
 \end{theorem}
@@ -155,18 +155,18 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
   略記として$E_a^{(b)}F_{(c)}^{(d)}G_{(e)}^f=T_{a(c)(e)}^{(b)(d)f}$を用いる．
   
   $E_\AA^\BB (F_\BB^\CC G_\CC^\DD)=(E_\AA^\BB F_\BB^\CC) G_\CC^\DD$を示すために
-  $\displaystyle\int E_\AA^{(b)} \left(\int {F_{(b)}^{(c)} G_{(c)}^\DD}^{dc}\right)^{db} = \int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc}$
+  $\displaystyle\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db = \int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$
   を示す．
   
   任意の対象$x,y\in\CC$，$p,q\in\BB$に対して次の図式が可換になる．
   \begin{center}
     \begin{tikzpicture}
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int {F_{(b)}^{(c)} G_{(c)}^\DD}^{dc}\right)^{db}$};
+      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
 
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right)^{db}$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right)^{db}$};
+      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
+      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
 
-      \node (EFG4) at (6,4) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(y)}^\DD\right)^{db}$};
+      \node (EFG4) at (6,4) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(y)}^\DD\right) db$};
       \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
       \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
       \node (EFG7) at (6,5) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
@@ -197,12 +197,12 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
       \draw[->] (node cs:name=EFG12) -- node[auto=left] {} (node cs:name=EFG13);
     \end{tikzpicture}
     \begin{tikzpicture}
-      \node (EFG1) at (0,4) {$\int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG1) at (0,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
 
-      \node (EFG2) at (3,6) {$\int {\left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
-      \node (EFG3) at (3,2) {$\int {\left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG2) at (3,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
+      \node (EFG3) at (3,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
 
-      \node (EFG4) at (6,4) {$\int {\left(E_\AA^{(p)} F_{(q)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG4) at (6,4) {$\int \left(E_\AA^{(p)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
       \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
       \node (EFG6) at (6,3) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
       \node (EFG7) at (6,5) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
@@ -233,15 +233,15 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
       \draw[->] (node cs:name=EFG12) -- node[auto=left] {} (node cs:name=EFG13);
     \end{tikzpicture}
     \begin{tikzpicture}
-      \node (EFG1') at (12,4) {$\int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG1') at (12,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
 
-      \node (EFG2') at (9,6) {$\int {\left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
-      \node (EFG3') at (9,2) {$\int {\left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG2') at (9,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
+      \node (EFG3') at (9,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
 
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right)^{db}$};
+      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
 
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right)^{db}$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right)^{db}$};
+      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
+      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
 
       \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
       \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
@@ -266,15 +266,15 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
   ここで，エンドの普遍性により一意的な射$!$が存在する．
   \begin{center}
     \begin{tikzpicture}
-      \node (EFG1') at (12,4) {$\int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG1') at (12,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
 
-      \node (EFG2') at (9,6) {$\int {\left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
-      \node (EFG3') at (9,2) {$\int {\left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG2') at (9,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
+      \node (EFG3') at (9,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
 
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int {F_{(b)}^{(c)} G_{(c)}^\DD}^{dc}\right)^{db}$};
+      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
 
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right)^{db}$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right)^{db}$};
+      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
+      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
 
       \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
       \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
@@ -305,15 +305,15 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
   更にもう一度，エンドの普遍性を用いることで，
   \begin{center}
     \begin{tikzpicture}
-      \node (EFG1') at (12,4) {$\int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG1') at (12,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
 
-      \node (EFG2') at (9,6) {$\int {\left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
-      \node (EFG3') at (9,2) {$\int {\left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD}^{dc}$};
+      \node (EFG2') at (9,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
+      \node (EFG3') at (9,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
 
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int {F_{(b)}^{(c)} G_{(c)}^\DD}^{dc}\right)^{db}$};
+      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
 
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right)^{db}$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right)^{db}$};
+      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
+      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
 
       \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
       \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
@@ -339,12 +339,12 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
     \end{tikzpicture}
   \end{center}
   よって
-  $\displaystyle\int E_\AA^{(b)} \left(\int {F_{(b)}^{(c)} G_{(c)}^\DD}^{dc}\right)^{db} = \int {\left(\int {E_\AA^{(b)} F_{(b)}^{(c)}}^{db} \right) G_{(c)}^\DD}^{dc}$
+  $\displaystyle\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right)db = \int \left(\int E_\AA^{(b)} F_{(b)}^{(c)}db \right) G_{(c)}^\DD dc$
   が示される．
 \end{proof}
 \begin{theorem}
   \begin{align*}
-    \Delta_{(a)}^\CC F_\CC &= \int {\Delta_{(a)}^{(c)} F_{(c)}}^{dc}
+    \Delta_{(a)}^\CC F_\CC &= \int \Delta_{(a)}^{(c)} F_{(c)} dc
   \end{align*}
 \end{theorem}
 

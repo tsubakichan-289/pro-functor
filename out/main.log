@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.sjis) (TeX Live 2023) (preloaded format=platex 2023.6.12)  21 MAY 2024 00:02
+This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.sjis) (TeX Live 2023) (preloaded format=platex 2023.6.12)  21 MAY 2024 22:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -413,34 +413,34 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 138.
 
-Overfull \hbox (55.78587pt too wide) in paragraph at lines 157--160
-[]$\OML/cmm/m/it/12 E[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 F[]G[]\OT1/cmr/m/n/12 ) = (\OML/cmm/m/it/12 E[]F[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 G[]$ \JY1/mc/m/n/12 を示すために $[] \OML/cmm/m/it/12 E[] [][] \OT1/cmr/m/n/12 = [] [][]$
+Overfull \hbox (68.18306pt too wide) in paragraph at lines 157--160
+[]$\OML/cmm/m/it/12 E[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 F[]G[]\OT1/cmr/m/n/12 ) = (\OML/cmm/m/it/12 E[]F[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 G[]$ \JY1/mc/m/n/12 を示すために $[] \OML/cmm/m/it/12 E[] [] db \OT1/cmr/m/n/12 = [] [] \OML/cmm/m/it/12 G[]dc$
  []
 
 
-Overfull \hbox (6.68848pt too wide) in paragraph at lines 198--265
+Overfull \hbox (10.28777pt too wide) in paragraph at lines 198--265
  [] 
  []
 
 
-Overfull \hbox (6.68848pt too wide) in paragraph at lines 198--265
+Overfull \hbox (9.28778pt too wide) in paragraph at lines 198--265
  [] 
  []
 
 
-Overfull \hbox (46.20776pt too wide) in paragraph at lines 198--265
+Overfull \hbox (51.10277pt too wide) in paragraph at lines 198--265
  [] 
  []
 
 [3
 
 ]
-Overfull \hbox (44.90417pt too wide) in paragraph at lines 303--304
+Overfull \hbox (51.10277pt too wide) in paragraph at lines 303--304
  [] 
  []
 
 [4]
-Overfull \hbox (44.90417pt too wide) in paragraph at lines 339--340
+Overfull \hbox (51.10277pt too wide) in paragraph at lines 339--340
  [] 
  []
 
@@ -452,12 +452,12 @@ L3 programming layer <2023-06-05>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 14414 strings out of 476389
- 292822 string characters out of 5800495
+ 14413 strings out of 476389
+ 292804 string characters out of 5800495
  1886589 words of memory out of 5000000
- 34898 multiletter control sequences out of 15000+600000
+ 34897 multiletter control sequences out of 15000+600000
  535650 words of font info for 122 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 85i,11n,89p,476b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 85i,9n,89p,476b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on out/main.dvi (5 pages, 88916 bytes).
+Output written on out/main.dvi (5 pages, 88496 bytes).
