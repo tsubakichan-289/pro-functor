@@ -89,10 +89,15 @@
 \newcommand{\2}{\mathbb{2}}
 \renewcommand{\.}{\hspace{2mm}}
 \newcommand{\id}[1]{id_{#1}}
+\newcommand{\End}[1]{\overline{\bigotimes_{#1}}}
+\newcommand{\CoEnd}[1]{\overline{\bigoplus_{#1}}}
+\newcommand{\tensor}[3]{#1^{#2}_{#3}}
 
 % よく使う太字はプリアンブル(この近所)に
 % \bmdefine{\bv}{v}
 % 等と定義しておいて, 本文中は $ \bv $ 等とすることもできる。
+
+\everymath{\displaystyle}
 
 \title{圏論周圏論}
 \author{つばきちゃん}
@@ -124,9 +129,9 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
 
 ある集合$S$を$\hat{S}:\mathbb{1}\rightarrow\mathbb{Set}$として考え，$\hat{S}(*)=S$とすると$\hat{S}=\hat{S}_\mathbb{1}=\hat{S}^\mathbb{1}$であり，$S=\hat{S}_{(*)}=\hat{S}^{(*)}$と表すことができる，
 
-行列$P_\mathbb{X}^\mathbb{X}$のエンドを$\displaystyle{\int P_{(x)}^{(x)}}^{dx}$と表す．
+行列$P_\mathbb{X}^\mathbb{X}$のエンドを$\End{x \in \mathbb{X}} P_{(x)}^{(x)}$と表す．
 
-行列$P_\mathbb{X}^\mathbb{X}$のコエンドを$\displaystyle\int P_{(x)}^{(x)} dx$と表す．
+行列$P_\mathbb{X}^\mathbb{X}$のコエンドを$\CoEnd{x \in \mathbb{X}} P_{(x)}^{(x)}$と表す．
 
 米田埋め込み$\text{Hom}(A,B)$を$\Delta^{(A)}_{(B)}$と表す．
 
@@ -137,215 +142,116 @@ $H_\mathbb{C}^\mathbb{D}$に$d\in \mathbb{D}$を代入したものはベクト�
 \begin{example}
   行列$F^\BB_\AA$と$G^\CC_\BB$の合成はコエンドを用いて次のように計算される．
   \[
-    F^\BB_\AA G^\CC_\BB = \int F^{(b)}_\AA G^\CC_{(b)}db
+    F^\BB_\AA G^\CC_\BB = \CoEnd{b \in \BB} F^{(b)}_\AA G^\CC_{(b)}
   \]
 \end{example}
 \begin{theorem}
   行列$E_\AA^\BB$と$F_\BB^\CC$，$G_\CC^\DD$にの合成には結合率が成り立つ．
   つまり，
   \begin{align*}
-    E_\AA^\BB (F_\BB^\CC G_\CC^\DD) &= E_\AA^\BB \left(\int F_\BB^{(c)} G_{(c)}^\DD dc\right) \\
-    &= \int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db \\
-    &= \int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc \\
-    &= \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD \\
+    E_\AA^\BB (F_\BB^\CC G_\CC^\DD) &= E_\AA^\BB \left(\CoEnd{c \in \CC} F_\BB^{(c)} G_{(c)}^\DD\right) \\
+    &= \CoEnd{b \in \BB} E_\AA^{(b)} \left(\CoEnd{c \in \CC} F_{(b)}^{(c)} G_{(c)}^\DD\right) \\
+    &= \CoEnd{c \in \CC} \left(\CoEnd{b \in \BB} E_\AA^{(b)} F_{(b)}^{(c)} \right) G_{(c)}^\DD \\
+    &= \left(\CoEnd{b \in \BB} E_\AA^{(b)} F_{(b)}^{(c)}\right) G_{(c)}^\DD \\
     &= (E_\AA^\BB F_\BB^\CC) G_\CC^\DD
   \end{align*}
 \end{theorem}
 \begin{proof}
-  略記として$E_a^{(b)}F_{(c)}^{(d)}G_{(e)}^f=T_{a(c)(e)}^{(b)(d)f}$を用いる．
-  
   $E_\AA^\BB (F_\BB^\CC G_\CC^\DD)=(E_\AA^\BB F_\BB^\CC) G_\CC^\DD$を示すために
-  $\displaystyle\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db = \int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$
+  $\CoEnd{b \in \BB} E_\AA^{(b)} \left(\CoEnd{c \in \CC} F_{(b)}^{(c)} G_{(c)}^\DD\right) = \CoEnd{c \in \CC} \left(\CoEnd{b \in \BB} E_\AA^{(b)} F_{(b)}^{(c)} \right) G_{(c)}^\DD$
   を示す．
   
-  任意の対象$x,y\in\CC$，$p,q\in\BB$に対して次の図式が可換になる．
+  任意の射$(f:x\rightarrow y) \in \CC$，$(g:p\rightarrow q) \in \BB$に対して次の図式が可換になる．
   \begin{center}
     \begin{tikzpicture}
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
+      \node (EFG1) at (0,6) {$\CoEnd{b \in \BB} E_\AA^{(b)} \left(\CoEnd{c \in \CC} F_{(b)}^{(c)} G_{(c)}^\DD\right)$};
 
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
+      \node (EFG2) at (3,9) {$\CoEnd{b \in \BB} E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right)$};
+      \node (EFG3) at (3,3) {$\CoEnd{b \in \BB} E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right)$};
 
-      \node (EFG4) at (6,4) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(y)}^\DD\right) db$};
-      \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
-      \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
-      \node (EFG7) at (6,5) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
-      \node (EFG8) at (6,7) {$T_{\AA(p)(x)}^{(p)(x)\DD}$};
+      \node (EFG4) at (6,6) {$\CoEnd{b \in \BB} E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(x)}^\DD\right)$};
+      \node (EFG5) at (6,1.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(q)}\tensor{G}{\DD}{(y)}$};
+      \node (EFG6) at (6,4.5) {$\tensor{E}{(p)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(y)}$};
+      \node (EFG7) at (6,7.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(x)}{(q)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG8) at (6,10.5) {$\tensor{E}{(p)}{\AA}\tensor{F}{(x)}{(p)}\tensor{G}{\DD}{(x)}$};
 
-      \node (EFG9) at (9,2) {$T_{\AA(q)(y)}^{(p)(y)\DD}$};
-      \node (EFG10) at (9,6) {$T_{\AA(q)(x)}^{(p)(x)\DD}$};
-      \node (EFG11) at (9,3) {$T_{\AA(q)(y)}^{(q)(x)\DD}$};
-      \node (EFG12) at (9,5) {$T_{\AA(p)(y)}^{(p)(x)\DD}$};
+      \node (EFG9) at (9,3) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(y)}$};
+      \node (EFG10) at (9,9) {$\tensor{E}{(q)}{\AA}\tensor{F}{(x)}{(p)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG11) at (9,4.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(q)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG12) at (9,7.5) {$\tensor{E}{(p)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(x)}$};
 
-      \node (EFG13) at (12,4) {$T_{\AA(q)(y)}^{(p)(x)\DD}$};
+      \node (EFG13) at (12,6) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(x)}$};
 
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG4);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG4);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
-      \draw[->] (node cs:name=EFG5) -- node[auto=left] {} (node cs:name=EFG9);
-      \draw[->] (node cs:name=EFG6) -- node[auto=left] {} (node cs:name=EFG9);
-      \draw[->] (node cs:name=EFG7) -- node[auto=left] {} (node cs:name=EFG10);
-      \draw[->] (node cs:name=EFG8) -- node[auto=left] {} (node cs:name=EFG10);
-      \draw[->] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG11);
-      \draw[->] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG12);
-      \draw[->] (node cs:name=EFG11) -- node[auto=left] {} (node cs:name=EFG13);
-      \draw[->] (node cs:name=EFG12) -- node[auto=left] {} (node cs:name=EFG13);
+      \draw[<-] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
+      \draw[<-] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG4);
+      \draw[<-] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG4);
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
+      \draw[<-] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
+      \draw[<-] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
+      \draw[<-] (node cs:name=EFG5) -- node[auto=left] {} (node cs:name=EFG9);
+      \draw[<-] (node cs:name=EFG6) -- node[auto=left] {} (node cs:name=EFG9);
+      \draw[<-] (node cs:name=EFG7) -- node[auto=left] {} (node cs:name=EFG10);
+      \draw[<-] (node cs:name=EFG8) -- node[auto=left] {} (node cs:name=EFG10);
+      \draw[<-] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG11);
+      \draw[<-] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG12);
+      \draw[<-] (node cs:name=EFG11) -- node[auto=left] {} (node cs:name=EFG13);
+      \draw[<-] (node cs:name=EFG12) -- node[auto=left] {} (node cs:name=EFG13);
     \end{tikzpicture}
     \begin{tikzpicture}
-      \node (EFG1) at (0,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
+      \node (EFG1) at (0,6) {$\CoEnd{c \in \CC} \left(\CoEnd{b \in \BB} E_\AA^{(b)} F_{(b)}^{(c)} \right) G_{(c)}^\DD$};
 
-      \node (EFG2) at (3,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
-      \node (EFG3) at (3,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
+      \node (EFG2) at (3,9) {$\CoEnd{c \in \CC} \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD$};
+      \node (EFG3) at (3,3) {$\CoEnd{c \in \CC} \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD$};
 
-      \node (EFG4) at (6,4) {$\int \left(E_\AA^{(p)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
-      \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
-      \node (EFG6) at (6,3) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
-      \node (EFG7) at (6,5) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
-      \node (EFG8) at (6,7) {$T_{\AA(p)(x)}^{(p)(x)\DD}$};
+      \node (EFG4) at (6,6) {$\CoEnd{c \in \CC} \left(E_\AA^{(q)} F_{(p)}^{(c)}\right) G_{(c)}^\DD$};
+      \node (EFG5) at (6,1.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(q)}\tensor{G}{\DD}{(y)}$};
+      \node (EFG6) at (6,4.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(x)}{(q)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG7) at (6,7.5) {$\tensor{E}{(p)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(y)}$};
+      \node (EFG8) at (6,10.5) {$\tensor{E}{(p)}{\AA}\tensor{F}{(x)}{(p)}\tensor{G}{\DD}{(x)}$};
 
-      \node (EFG9) at (9,2) {$T_{\AA(q)(y)}^{(q)(x)\DD}$};
-      \node (EFG10) at (9,6) {$T_{\AA(p)(y)}^{(p)(x)\DD}$};
-      \node (EFG11) at (9,3) {$T_{\AA(q)(y)}^{(p)(y)\DD}$};
-      \node (EFG12) at (9,5) {$T_{\AA(q)(x)}^{(p)(x)\DD}$};
+      \node (EFG9) at (9,3) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(q)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG10) at (9,9) {$\tensor{E}{(p)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG11) at (9,4.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(y)}$};
+      \node (EFG12) at (9,7.5) {$\tensor{E}{(q)}{\AA}\tensor{F}{(x)}{(p)}\tensor{G}{\DD}{(x)}$};
 
-      \node (EFG13) at (12,4) {$T_{\AA(q)(y)}^{(p)(x)\DD}$};
+      \node (EFG13) at (12,6) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(p)}\tensor{G}{\DD}{(x)}$};
 
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG4);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG4);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
-      \draw[->] (node cs:name=EFG5) -- node[auto=left] {} (node cs:name=EFG9);
-      \draw[->] (node cs:name=EFG6) -- node[auto=left] {} (node cs:name=EFG9);
-      \draw[->] (node cs:name=EFG7) -- node[auto=left] {} (node cs:name=EFG10);
-      \draw[->] (node cs:name=EFG8) -- node[auto=left] {} (node cs:name=EFG10);
-      \draw[->] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG11);
-      \draw[->] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG12);
-      \draw[->] (node cs:name=EFG11) -- node[auto=left] {} (node cs:name=EFG13);
-      \draw[->] (node cs:name=EFG12) -- node[auto=left] {} (node cs:name=EFG13);
+      \draw[<-] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
+      \draw[<-] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG4);
+      \draw[<-] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG4);
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
+      \draw[<-] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
+      \draw[<-] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
+      \draw[<-] (node cs:name=EFG5) -- node[auto=left] {} (node cs:name=EFG9);
+      \draw[<-] (node cs:name=EFG6) -- node[auto=left] {} (node cs:name=EFG9);
+      \draw[<-] (node cs:name=EFG7) -- node[auto=left] {} (node cs:name=EFG10);
+      \draw[<-] (node cs:name=EFG8) -- node[auto=left] {} (node cs:name=EFG10);
+      \draw[<-] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG11);
+      \draw[<-] (node cs:name=EFG4) -- node[auto=left] {} (node cs:name=EFG12);
+      \draw[<-] (node cs:name=EFG11) -- node[auto=left] {} (node cs:name=EFG13);
+      \draw[<-] (node cs:name=EFG12) -- node[auto=left] {} (node cs:name=EFG13);
     \end{tikzpicture}
-    \begin{tikzpicture}
-      \node (EFG1') at (12,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
-
-      \node (EFG2') at (9,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
-      \node (EFG3') at (9,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
-
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
-
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
-
-      \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
-      \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
-      \node (EFG7) at (6,5) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
-      \node (EFG8) at (6,7) {$T_{\AA(p)(x)}^{(p)(x)\DD}$};
-
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
-
-      \draw[->] (node cs:name=EFG1') -- node[auto=left] {} (node cs:name=EFG2');
-      \draw[->] (node cs:name=EFG1') -- node[auto=left] {} (node cs:name=EFG3');
-      \draw[->] (node cs:name=EFG2') -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2') -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3') -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3') -- node[auto=left] {} (node cs:name=EFG5);
-    \end{tikzpicture}
-  \end{center}
-  ここで，エンドの普遍性により一意的な射$!$が存在する．
+  \end{center}    
+  ここで次の図式について考える．
   \begin{center}
     \begin{tikzpicture}
-      \node (EFG1') at (12,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
+      \node (EFG2) at (0,3) {$\CoEnd{b \in \BB} \left(E_\AA^{(b)} F_{(b)}^{(x)}\right) G_{(x)}^\DD$};
+      \node (EFG4) at (0,0) {$\CoEnd{b \in \BB} \left(E_\AA^{(b)} F_{(b)}^{(y)}\right) G_{(x)}^\DD$};
+  
+      \node (EFG7) at (5,3) {$\tensor{E}{(q)}{\AA}\tensor{F}{(x)}{(q)}\tensor{G}{\DD}{(x)}$};
+      \node (EFG11) at (5,0) {$\tensor{E}{(q)}{\AA}\tensor{F}{(y)}{(q)}\tensor{G}{\DD}{(x)}$};
+  
+      \draw[<-] (node cs:name=EFG2) -- node[auto=left] {$\pi_1$} (node cs:name=EFG7);
+      \draw[<-] (node cs:name=EFG4) -- node[auto=left] {$\pi_2$} (node cs:name=EFG11);
 
-      \node (EFG2') at (9,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
-      \node (EFG3') at (9,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
-
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
-
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
-
-      \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
-      \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
-      \node (EFG7) at (6,5) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
-      \node (EFG8) at (6,7) {$T_{\AA(p)(x)}^{(p)(x)\DD}$};
-
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
-
-      \draw[->] (node cs:name=EFG1') -- node[auto=left] {} (node cs:name=EFG2');
-      \draw[->] (node cs:name=EFG1') -- node[auto=left] {} (node cs:name=EFG3');
-      \draw[->] (node cs:name=EFG2') -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2') -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3') -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3') -- node[auto=left] {} (node cs:name=EFG5);
-
-      \draw[->] (node cs:name=EFG1') -- node[auto=right] {$!$} (node cs:name=EFG3);
-      \draw[->] (node cs:name=EFG1') -- node[auto=right] {$!$} (node cs:name=EFG2);
-
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {$!$} (node cs:name=EFG3');
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {$!$} (node cs:name=EFG2');
+      \draw[<-] (node cs:name=EFG2) -- node[auto=right] {$\CoEnd{b \in \BB} \left(E_\AA^{\id{b}} F_{\id{b}}^{f}\right) G_{\id{x}}^\DD$} (node cs:name=EFG4);
+      \draw[<-] (node cs:name=EFG7) -- node[auto=left] {$\tensor{E}{\id{q}}{\AA}\tensor{F}{f}{\id{q}}\tensor{G}{\DD}{\id{x}}$} (node cs:name=EFG11);
     \end{tikzpicture}
   \end{center}
-  更にもう一度，エンドの普遍性を用いることで，
-  \begin{center}
-    \begin{tikzpicture}
-      \node (EFG1') at (12,4) {$\int \left(\int E_\AA^{(b)} F_{(b)}^{(c)} db \right) G_{(c)}^\DD dc$};
-
-      \node (EFG2') at (9,6) {$\int \left(E_\AA^{(p)} F_{(p)}^{(c)}\right) G_{(c)}^\DD dc$};
-      \node (EFG3') at (9,2) {$\int \left(E_\AA^{(q)} F_{(q)}^{(c)}\right) G_{(c)}^\DD dc$};
-
-      \node (EFG1) at (0,4) {$\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right) db$};
-
-      \node (EFG2) at (3,6) {$\int E_\AA^{(b)} \left(F_{(b)}^{(x)} G_{(x)}^\DD\right) db$};
-      \node (EFG3) at (3,2) {$\int E_\AA^{(b)} \left(F_{(b)}^{(y)} G_{(y)}^\DD\right) db$};
-
-      \node (EFG5) at (6,1) {$T_{\AA(q)(y)}^{(q)(y)\DD}$};
-      \node (EFG6) at (6,3) {$T_{\AA(p)(y)}^{(p)(y)\DD}$};
-      \node (EFG7) at (6,5) {$T_{\AA(q)(x)}^{(q)(x)\DD}$};
-      \node (EFG8) at (6,7) {$T_{\AA(p)(x)}^{(p)(x)\DD}$};
-
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG2);
-      \draw[->] (node cs:name=EFG1) -- node[auto=left] {} (node cs:name=EFG3);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2) -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3) -- node[auto=left] {} (node cs:name=EFG5);
-
-      \draw[->] (node cs:name=EFG1') -- node[auto=left] {} (node cs:name=EFG2');
-      \draw[->] (node cs:name=EFG1') -- node[auto=left] {} (node cs:name=EFG3');
-      \draw[->] (node cs:name=EFG2') -- node[auto=left] {} (node cs:name=EFG8);
-      \draw[->] (node cs:name=EFG2') -- node[auto=left] {} (node cs:name=EFG6);
-      \draw[->] (node cs:name=EFG3') -- node[auto=left] {} (node cs:name=EFG7);
-      \draw[->] (node cs:name=EFG3') -- node[auto=left] {} (node cs:name=EFG5);
-
-      \draw[->,transform canvas={yshift=2pt}] (node cs:name=EFG1') -- node[auto=right] {$!$} (node cs:name=EFG1);
-      \draw[->,transform canvas={yshift=-2pt}] (node cs:name=EFG1) -- node[auto=right] {$!$} (node cs:name=EFG1');
-    \end{tikzpicture}
-  \end{center}
-  よって
-  $\displaystyle\int E_\AA^{(b)} \left(\int F_{(b)}^{(c)} G_{(c)}^\DD dc\right)db = \int \left(\int E_\AA^{(b)} F_{(b)}^{(c)}db \right) G_{(c)}^\DD dc$
-  が示される．
 \end{proof}
-\begin{theorem}
-  \begin{align*}
-    \Delta_{(a)}^\CC F_\CC &= \int \Delta_{(a)}^{(c)} F_{(c)} dc
-  \end{align*}
-\end{theorem}
 
 \end{document}
